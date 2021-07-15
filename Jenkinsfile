@@ -10,12 +10,12 @@ node('master')
     }
     stage('ContinuousDeployment')
     {
-        sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/ScriptedPipeline/webapp/target/webapp.war ubuntu@172.31.2.73:/var/lib/tomcat8/webapps/testenv.war'
+        sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/BuildPipeline-Scripted/webapp/target/webapp.war ubuntu@172.31.2.73:/var/lib/tomcat8/webapps/testenv.war'
     }
     stage('ContinuousTesting')
     {
         git 'https://github.com/selenium-saikrishna/FunctionalTesting.git'
-        sh label: '', script: 'java -jar /home/ubuntu/.jenkins/workspace/ScriptedPipeline/testing.jar'
+        sh label: '', script: 'java -jar /home/ubuntu/.jenkins/workspace/BuildPipeline-Scripted/webapp/target/testing.jar'
     }
      stage('ContinuousDelivery')
     {
