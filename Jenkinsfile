@@ -2,7 +2,7 @@ node('master')
 {
     stage('ContinuousDownload') 
     {
-         git 'https://github.com/selenium-saikrishna/maven.git'
+         git 'https://github.com/venkat9822891/maven-project1.git'
     }
     stage('ContinuousBuild') 
     {
@@ -14,7 +14,7 @@ node('master')
     }
     stage('ContinuousTesting')
     {
-        git 'https://github.com/selenium-saikrishna/FunctionalTesting.git'
+        git 'https://github.com/venkat9822891/maven-project1.git'
         sh label: '', script: 'java -jar /home/ubuntu/.jenkins/workspace/BuildPipeline-Scripted/webapp/target/testing.jar'
     }
      stage('ContinuousDelivery')
