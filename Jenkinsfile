@@ -15,7 +15,7 @@ node('master')
     stage('ContinuousTesting')
     {
         git 'https://github.com/venkat9822891/Selenium-testcases.git'
-        sh label: '', script: 'java -jar /home/ubuntu/.jenkins/workspace/BuildPipeline-Scripted/webapp/target/testing.jar'
+        sh label: '', script: 'java -jar /home/ubuntu/.jenkins/workspace/Apple-ReleaseIpad-Bp/testing.jar'
     }
      stage('ContinuousDelivery')
     {
