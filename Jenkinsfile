@@ -1,24 +1,23 @@
-##modified second time modified
 node {
-   stage('Cont.Download') 
-     {
+    stage('Cont.Download') 
+      {
     git 'https://github.com/venkat9822891/maven-project1.git'
-     }
-   stage('Cont.Build') 
-     {
+      }
+      stage('Cont.Build') 
+      {
     sh 'mvn package'
-     }
-   stage('Cont.Deployment') 
-    {
-    deploy adapters: [tomcat8(credentialsId: '68659247-e3c3-4313-99cc-37e94f5bf716', path: '', url: 'http://172.31.12.12:8080')], contextPath: '/testingapp', war: '**/*.war'
-     }
-   stage('Cont.testing') 
-     {
-     git 'https://github.com/venkat9822891/Selenium-testcases.git'
-     echo 'Testing complete'
-     }
-  stage('Cont.Delivery')
-   {
-     deploy adapters: [tomcat8(credentialsId: '2f644474-e2a3-4d08-8f26-08d0ec5dca31', path: '', url: 'http://172.31.38.214:8080')], contextPath: '/prodapp', war: '**/*.war'  
-   }
+       }
+       
+       stage('Cont.Deployment')
+       {
+    deploy adapters: [tomcat8(credentialsId: '21757c38-48bd-4060-878b-8e5f217f117d', path: '', url: 'http://172.31.45.139:8080/')], contextPath: '/testapp', war: '**/*.war'
+       }
+       stage('Cont.Testing') 
+       {
+    git 'https://github.com/venkat9822891/Selenium-testcases.git'
+        }
+        stage('Cont.Deployment') 
+       {
+    deploy adapters: [tomcat8(credentialsId: '21757c38-48bd-4060-878b-8e5f217f117d', path: '', url: 'http://172.31.45.139:8080/')], contextPath: '/prodapp', war: '**/*.war'
+        }
 }
