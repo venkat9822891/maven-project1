@@ -10,7 +10,7 @@ node {
      }
    stage('Cont.Deployment') 
     {
-    deploy adapters: [tomcat8(credentialsId: '68659247-e3c3-4313-99cc-37e94f5bf716', path: '', url: 'http://172.31.12.12:8080')], contextPath: '/testingapp', war: '**/*.war'
+    deploy adapters: [tomcat8(credentialsId: 'a6a00475-2752-436e-878d-5db66ef166eb', path: '', url: 'http://172.31.42.115:8080')], contextPath: 'test', war: '**/*.war'
      }
    stage('Cont.testing') 
      {
@@ -19,6 +19,6 @@ node {
      }
   stage('Cont.Delivery')
    {
-     deploy adapters: [tomcat8(credentialsId: '2f644474-e2a3-4d08-8f26-08d0ec5dca31', path: '', url: 'http://172.31.38.214:8080')], contextPath: '/prodapp', war: '**/*.war'  
+     deploy adapters: [tomcat8(credentialsId: 'cf6f23ff-9d14-4303-b0ee-d8e4118490ab', path: '', url: 'http://172.31.35.239:8080')], contextPath: 'prod', war: '**/*.war'  
    }
 }
