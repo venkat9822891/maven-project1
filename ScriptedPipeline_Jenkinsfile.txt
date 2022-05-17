@@ -1,24 +1,20 @@
 node()
 {
-stage('Cont.Download') 
-{
+  stage('cont download') {
     git 'https://github.com/venkat9822891/maven-project1.git'
-}
-stage('Cont.Build') 
-{
+                          }
+  stage('cont build') {
     sh 'mvn package'
+              }   
+  stage('cont integration/Deployment') {
+   deploy adapters: [tomcat8(credentialsId: '24c18552-0e25-4c72-b050-e1d854838cad', path: '', url: 'http://3.110.40.155:8080/')], contextPath: '/testapp', war: '**/*.war'
+        }
+ 
+ stage('cont download-functional') {
+    git 'https://github.com/venkat9822891/Selenium-testcases.git'
+    sh 'java -jar testing.jar'
+} 
+stage('cont int'){
+    deploy adapters: [tomcat8(credentialsId: '24c18552-0e25-4c72-b050-e1d854838cad', path: '', url: 'http://3.109.3.209:8080/')], contextPath: '/qaapp', war: '**/*.war'
 }
-stage('Cont.Deployment')
-{
-deploy adapters: [tomcat8(credentialsId: 'd48ce171-66f5-4dee-87cd-6c973a829c4a', path: '', url: 'http://3.110.40.155:8080/')], contextPath: '/myapptest', war: '**/*.war'
 }
-stage('Cont.Testing')
-{
-git 'https://github.com/venkat9822891/Selenium-testcases.git'
-}
-stage('Cont.Deployment') 
-{
-    deploy adapters: [tomcat8(credentialsId: 'd48ce171-66f5-4dee-87cd-6c973a829c4a', path: '', url: 'http://3.109.3.209:8080/')], contextPath: '/myappqa', war: '**/*.war'
-}
-}
-
