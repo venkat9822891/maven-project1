@@ -1,52 +1,20 @@
 pipeline
 {
-    agent any
-    stages
-    {
-        stage('ContDownload')
-        {
-            steps
-            {
-                git 'https://github.com/venkat9822891/maven-project1.git'
-            }
-        }
-        stage('ContBuild')
-        {
-            steps
-            {
-                sh 'mvn package'
-            }
-        }
-        stage('ContDeployment')
-        {
-            steps
-            {
-                sh 'scp /var/lib/jenkins/workspace/Declarative_Pipeline/webapp/target/webapp.war ubuntu@10.10.10.32:/var/lib/tomcat7/webapps/qaenv.war'
-            }
-        }
-        stage('ContTesting')
-        {
-            steps
-            {
-                git 'https://github.com/venkat9822891/maven-project1.git'
-                sh 'java -jar  /var/lib/jenkins/workspace/Declarative_Pipeline/testing.jar'
-            }
-        }
-    }
-    post
-    {
-        success
-        {
-            input message: 'Waiting for approval from DM', submitter: 'Srinivas'
-    sh 'scp /var/lib/jenkins/workspace/Declarative_Pipeline/webapp/target/webapp.war ubuntu@10.10.10.33:/var/lib/tomcat7/webapps/prodenv.war'
-        }
-        failure
-        {
-            mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Build failed', to: 'wnsadmi@gmail.com'
-            
-        }
-        
+agent any
+stages{
+stage('cont download'){
+steps{
+git 'https://github.com/venkat9822891/maven-project1.git'
      }
-      
-    
+stage('cont build'){
+steps{
+deploy adapters: [tomcat8(credentialsId: '24c18552-0e25-4c72-b050-e1d854838cad', path: '', url: 'http://3.110.40.155:8080/')], contextPath: '/testapp', war: '**/*.war'
+     }
+}
+stage('cont deploy'){
+steps{
+sh 'mvn package'
+     }
+}
+}
 }
