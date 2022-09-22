@@ -2,7 +2,7 @@ node {
     stage('cont.download') {
     git 'https://github.com/venkat9822891/maven-project1.git'
 }
-    stage('cont.build') {
+    stage('cont.Build') {
     sh 'mvn package'
 }
     stage('cont.deployment') {
