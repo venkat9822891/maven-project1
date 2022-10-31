@@ -9,6 +9,6 @@ node {
      }
   stage('Cont.Deployments') 
     {
-    deploy adapters: [tomcat8(credentialsId: 'ce8c6d56-0d5f-4813-8543-552debf338ac', path: '', url: 'http://172.31.43.36:8080')], contextPath: '/dev-app', war: '**/*.war'
+    deploy adapters: [tomcat8(credentialsId: 'ce8c6d56-0d5f-4813-8543-552deb7877878f338ac', path: '', url: 'http://172.31.43.36:8080')], contextPath: '/dev-app', war: '**/*.war'
     }
 }
