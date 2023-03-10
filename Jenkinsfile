@@ -1,8 +1,8 @@
 node('slv1') {
-    stage('Cont.Down') {
+    stage('Cont.Download') {
     git 'https://github.com/venkat9822891/maven-project1.git'
     }
-    stage('Cont.Build') {
+    stage('Cont.Building') {
     sh 'mvn package'
     }
     stage('Cont.Deployment'){
