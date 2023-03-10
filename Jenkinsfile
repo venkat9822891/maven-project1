@@ -6,6 +6,6 @@ node('slv1') {
     sh 'mvn package'
     }
     stage('Cont.Deployment'){
-    deploy adapters: [tomcat8(credentialsId: 'Test-Env', path: '', url: 'http://172.31.46.16:8080')], contextPath: '/app-dev', war: '**/*.war'
+    deploy adapters: [tomcat8(credentialsId: 'qa', path: '', url: 'http://172.31.36.247:8080')], contextPath: '/app-qa', war: '**/*.war'
     }
 }
