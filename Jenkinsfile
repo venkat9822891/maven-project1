@@ -1,20 +1,11 @@
-node {
-    stage('cont.downloads') {
+node('slv1') {
+    stage('Cont.Download') {
     git 'https://github.com/venkat9822891/maven-project1.git'
-}
-    stage('cont.Build') {
+    }
+    stage('Cont.Building') {
     sh 'mvn package'
-}
-    stage('cont.deployment') {
-    deploy adapters: [tomcat8(credentialsId: '9dd47a0c-1011-406f-957b-1b505e1455f7', path: '', url: 'http://172.31.32.126:8080')], contextPath: '/dev-app', war: '**/*.war'
-}
-<<<<<<< HEAD
-
-
-          }
-=======
-    stage('cont.delivery') {
-          deploy adapters: [tomcat8(credentialsId: '5288ec19-ab0a-4ea9-8ffd-1058f3041f9f', path: '', url: 'http://172.31.35.249:8080')], contextPath: '/test-app', war: '**/*.war'
-          }    
->>>>>>> da85b880b92ccf643be6f7a3ef3e0e6de2168b4a
+    }
+    stage('Cont.Deployment'){
+    deploy adapters: [tomcat8(credentialsId: 'Test-Env', path: '', url: 'http://172.31.46.16:8080')], contextPath: '/app-dev', war: '**/*.war'
+    }
 }
