@@ -1,4 +1,4 @@
-node('slv-new') {
+node('slvnew') {
     stage('Cont.Download') {
     git 'https://github.com/venkat9822891/maven-project1.git'
       }
